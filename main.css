@@ -222,4 +222,5 @@ h2 {
 .theme-toggle input:checked+label::after {
     transform: translateX(30px);
     content: "☀️";
+
 }
