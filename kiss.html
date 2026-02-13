@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiss Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggleTheme">
+        <label for="toggleTheme"></label>
+    </div>
+    <div class="page">
+        <h2>13 Feb – Kiss Day 💋</h2>
+        <p>
+            Kiss Day is a symbol of affection and appreciation.
+            For my princess, it represents gentle care and pure
+            intentions rather than grand gestures. It’s about
+            expressing feelings in a respectful and meaningful
+            way.
+        </p>
+
+        <a href="index.html" class="back">← Back to Home</a>
+    </div>
+
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTENT HERE -->
+        <h1>Remember the 1st kiss we had.</h1>
+        <!-- rest of your page content -->
+
+    </div>
+</body>
+<footer class="footer">
+    © 2026 All rights reserved. <br>
+    Dedicated with love to <span>Magdalene Ann</span> <br>
+    aka <strong>Princess</strong> 💖
+</footer>
+<script>
+    const toggle = document.getElementById("toggleTheme");
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+        toggle.checked = true;
+    }
+
+    toggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    });
+</script>
+
+</html>

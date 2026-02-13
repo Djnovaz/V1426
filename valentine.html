@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine's Day</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+            position: relative;
+            height: 200px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        /* YES BUTTON – Glowy Green */
+        .yes {
+            background: #28a745;
+            /* green */
+            color: white;
+            box-shadow: 0 0 15px #28a745, 0 0 30px #28a745, 0 0 45px #28a745;
+            transition: 0.3s;
+        }
+
+        .yes:hover {
+            box-shadow: 0 0 20px #00ff55, 0 0 40px #00ff55, 0 0 60px #00ff55;
+        }
+
+        /* NO BUTTON – Glowy Red */
+        .no {
+            background: #dc3545;
+            /* red */
+            color: white;
+            position: fixed;
+            /* allows free movement */
+            left: 55%;
+            top: 60%;
+            box-shadow: 0 0 15px #dc3545, 0 0 30px #dc3545, 0 0 45px #dc3545;
+            transition: 0.3s;
+        }
+
+        .no:hover {
+            box-shadow: 0 0 20px #ff4444, 0 0 40px #ff4444, 0 0 60px #ff4444;
+        }
+
+        body.dark .yes {
+            background: #00ff55;
+            /* neon green for dark mode */
+            box-shadow: 0 0 15px #00ff55, 0 0 30px #00ff55, 0 0 45px #00ff55;
+        }
+
+        body.dark .no {
+            background: #ff3b3b;
+            /* neon red for dark mode */
+            box-shadow: 0 0 15px #ff3b3b, 0 0 30px #ff3b3b, 0 0 45px #ff3b3b;
+        }
+
+
+        /* ❤️ HEARTS */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 3s linear forwards;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(45deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-250px) rotate(45deg);
+            }
+        }
+
+        /* 🎆 FIREWORK */
+        .firework {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: rgb(173, 5, 126);
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(6);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggleTheme">
+        <label for="toggleTheme"></label>
+    </div>
+    <div class="page-wrapper">
+
+        <div class="page">
+            <h2>14 Feb – Valentine’s Day ❤️</h2>
+
+            <p>
+                Valentine’s Day brings everything together, care, appreciation,
+                and gratitude. On this day, my princess is someone to be cherished,
+                not just today but every day. It’s a reminder that love is shown
+                through consistency, respect, and genuine feelings.
+            </p>
+
+            <div class="question">
+                Would you be my Valentine Princess? 💖
+            </div>
+
+            <div class="btn-group">
+                <button class="btn yes" onclick="startLove()">Yes 💕</button>
+                <button class="btn no" id="noBtn" onclick="moveNo()">No 🙈</button>
+            </div>
+
+            <a href="index.html" class="back" onclick="stopLove()">← Back</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © 2026 All rights reserved. <br>
+        Dedicated with love to <span>Magdalene Ann</span> <br>
+        aka <strong>Princess</strong> 💖
+    </footer>
+
+    <script>
+        let heartInterval;
+        let fireworkInterval;
+
+        function startLove() {
+            if (heartInterval) return;
+
+            // ❤️ Hearts
+            heartInterval = setInterval(() => {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = window.innerHeight + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 200);
+
+            // 🎆 Fireworks
+            fireworkInterval = setInterval(() => {
+                const firework = document.createElement("div");
+                firework.className = "firework";
+                firework.style.left = Math.random() * window.innerWidth + "px";
+                firework.style.top = Math.random() * window.innerHeight + "px";
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 1000);
+            }, 500);
+        }
+
+        function stopLove() {
+            clearInterval(heartInterval);
+            clearInterval(fireworkInterval);
+            heartInterval = null;
+            fireworkInterval = null;
+        }
+
+        function moveNo() {
+            const noBtn = document.getElementById("noBtn");
+
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        }
+    </script>
+    <script>
+        const toggle = document.getElementById("toggleTheme");
+
+        // Load saved theme
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener("change", () => {
+            document.body.classList.toggle("dark");
+
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+    </script>
+</body>
+
+</html>

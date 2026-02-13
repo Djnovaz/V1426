@@ -1,0 +1,225 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+    /* LIGHT MODE (default) */
+    --bg-main: #ffccd5;
+    --text-main: #800020;
+    --card-bg: #ffffff;
+    --card-text: #b3003b;
+    --footer-bg: linear-gradient(to right, #ff4d6d, #ff758f);
+    --btn-bg: #e6004c;
+}
+
+/* DARK PURPLE MODE */
+body.dark {
+    --bg-main: #12001a;
+    --text-main: #e2c7ff;
+    --card-bg: #1e0030;
+    --card-text: #e2c7ff;
+    --footer-bg: linear-gradient(to right, #2a0040, #3d005c);
+    --btn-bg: #b56cff;
+}
+
+/* =========================
+   BASE LAYOUT
+========================= */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, var(--bg-main), var(--bg-main));
+    color: var(--text-main);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.4s, color 0.4s;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1 {
+    margin-top: 30px;
+    font-size: 42px;
+}
+
+h2 {
+    color: var(--card-text);
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   GRID / HOME
+========================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--card-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.card span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 0 30px rgba(181, 108, 255, 0.45);
+}
+
+/* =========================
+   DAY PAGES
+========================= */
+.page {
+    max-width: 700px;
+    margin: 80px auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(181, 108, 255, 0.25);
+}
+
+.page h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.page p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.back,
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: white;
+    background: var(--btn-bg);
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    margin-top: auto;
+    padding: 20px;
+    background: var(--footer-bg);
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.footer span {
+    font-weight: bold;
+    color: #fff5f7;
+}
+
+.footer strong {
+    color: #ffe6eb;
+}
+
+/* =========================
+   PAGE WRAPPER
+========================= */
+.page-wrapper {
+    flex: 1;
+}
+
+/* =========================
+   THEME TOGGLE SWITCH
+========================= */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle label {
+    width: 60px;
+    height: 30px;
+    background: #3a2b4d;
+    display: block;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 10px rgba(181, 108, 255, 0.6);
+}
+
+.theme-toggle label::after {
+    content: "🌙";
+    width: 26px;
+    height: 26px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.theme-toggle input:checked+label::after {
+    transform: translateX(30px);
+    content: "☀️";
+}

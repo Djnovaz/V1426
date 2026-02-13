@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chocolate Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggleTheme">
+        <label for="toggleTheme"></label>
+    </div>
+    <div class="page">
+        <h2>9 Feb – Chocolate Day 🍫</h2>
+        <p>
+            Chocolate Day is sweet, just like the moments I share with my princess.
+            Each small memory feels like a piece of chocolate simple, comforting,
+            and enough to brighten the day. This day is a reminder that even small
+            things can carry a lot of happiness.
+        </p>
+
+        <a href="index.html" class="back">← Back to Home</a>
+    </div>
+    <div class="page-wrapper">
+
+        <!-- PAGE CONTENT HERE -->
+        <h1>Remember when I gift you your favourite chocolate.</h1>
+        <!-- rest of your page content -->
+
+    </div>
+</body>
+
+<footer class="footer">
+    © 2026 All rights reserved. <br>
+    Dedicated with love to <span>Magdalene Ann</span> <br>
+    aka <strong>Princess</strong> 💖
+</footer>
+<script>
+    const toggle = document.getElementById("toggleTheme");
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+        toggle.checked = true;
+    }
+
+    toggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    });
+</script>
+
+</html>
